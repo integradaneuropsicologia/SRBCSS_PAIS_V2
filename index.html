@@ -332,7 +332,7 @@
    const AREA_PACIENTE_URL = "https://integradaneuropsicologia.github.io/area-do-paciente-v2/";
     const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   
-   const FREQ6     = ["Sempre","Frequentente", "Às vezes", "Raramente", "Nunca", "Não se aplica"];
+   const FREQ6     = ["Sempre","Frequentemente", "Às vezes", "Raramente", "Nunca", "Não se aplica"];
 
     
 
@@ -343,11 +343,11 @@
 const SCALE_SCORE_MAPS = {
  
   FREQ6: {
-"Sempre":null,
-"Frequentente":null,
-"Às vezes":null, 
-"Raramente":null, 
-"Nunca":null,
+"Sempre":5,
+"Frequentemente":4,
+"Às vezes":3,
+"Raramente":2,
+"Nunca":1,
 "Não se aplica":null
 }
 
@@ -648,6 +648,33 @@ const FORM_QUESTIONS = [
     required: true
   }
 ];
+
+function questionRange(start, end) {
+  return Array.from({ length: end - start + 1 }, (_, index) => String(start + index));
+}
+
+const INDICATORS_CONFIG = {
+  HabilidadesDeAprendizagem: {
+    label: "Habilidades de Aprendizagem",
+    questions: questionRange(1, 8)
+  },
+  Motivacao: {
+    label: "Motivação",
+    questions: questionRange(9, 15)
+  },
+  Criatividade: {
+    label: "Criatividade",
+    questions: questionRange(16, 22)
+  },
+  Lideranca: {
+    label: "Liderança",
+    questions: questionRange(23, 29)
+  },
+  Total: {
+    label: "Total",
+    questions: questionRange(1, 29)
+  }
+};
 
 
 
